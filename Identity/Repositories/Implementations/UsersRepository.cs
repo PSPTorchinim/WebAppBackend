@@ -5,10 +5,18 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Identity.Repositories.Implementations
 {
-    public class UsersRepository : Repository<User>, IUsersRepository
+    public class UsersRepository : Repository<User, IdentityContext>, IUsersRepository
     {
-        public UsersRepository(DbContext context) : base(context)
+        public UsersRepository(IdentityContext context) : base(context)
         {
+        }
+
+        public async Task<List<User>> GetAsync()
+        {
+            return context.Users
+                .Include(u => u.Roles).ThenInclude(r => r.Permissions)
+                .Include(u => u.Country)
+                .ToList();
         }
     }
 }

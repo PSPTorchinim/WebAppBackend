@@ -5,6 +5,6 @@ namespace Identity.Repositories.Interfaces
 {
     public interface ICountryRepository: IRepository<Country>
     {
-        Task<Country> GetByShortcout(string shortcut);
+        Task<Country> GetByShortcut(string shortcut);
     }
 }

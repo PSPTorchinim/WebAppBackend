@@ -8,6 +8,6 @@ namespace Identity.Entities
         public string Shortcut { get; set; }
         public string Name { get; set; }
 
-        public List<User> Users { get; set; }
+        public virtual List<User> Users { get; set; }
     }
 }

@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Identity.Repositories.Implementations
 {
-    public class RolesRepository : Repository<Role>, IRolesRepository
+    public class RolesRepository : Repository<Role, IdentityContext>, IRolesRepository
     {
-        public RolesRepository(DbContext context) : base(context)
+        public RolesRepository(IdentityContext context) : base(context)
         {
         }
     }

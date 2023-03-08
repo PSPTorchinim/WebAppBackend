@@ -14,7 +14,7 @@ namespace Handlers.Exceptions
             LogException(ex.InnerException, logger);
         }
 
-        public async Task<T> Handle<T>(Func<Task<T>> action, ILogger logger)
+        public static async Task<T> Handle<T>(Func<Task<T>> action, ILogger logger)
         {
             try
             {

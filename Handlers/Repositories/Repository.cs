@@ -5,12 +5,12 @@ using System.Linq.Expressions;
 
 namespace Handlers.Repositories
 {
-    public abstract class Repository<T> : IRepository<T> where T : class, IGuidEntity
+    public abstract class Repository<T, TContext> : IRepository<T> where T : class, IGuidEntity where TContext : DbContext
     {
 
-        private DbContext context;
+        protected TContext context;
 
-        protected Repository(DbContext context)
+        public Repository(TContext context)
         {
             this.context = context ?? throw new ArgumentNullException(nameof(context));
         }
@@ -19,6 +19,12 @@ namespace Handlers.Repositories
         {
             context.Set<T>().Add(entity);
             return await Save();
+        }
+
+        public async Task<int> CountAsync(Expression<Func<T, bool>> specification)
+        {
+            var matching = await GetAsync(specification);
+            return matching.Count();
         }
 
         public async Task<T> Delete(Guid id)
@@ -59,11 +65,11 @@ namespace Handlers.Repositories
             return await context.SaveChangesAsync() > 0;
         }
 
-        public async Task<T> Update(T entity)
+        public async Task<bool> Update(T entity)
         {
             context.Entry(entity).State = EntityState.Modified;
-            await context.SaveChangesAsync();
-            return entity;
+            var updated = await context.SaveChangesAsync() > 0;
+            return updated;
         }
     }
 }

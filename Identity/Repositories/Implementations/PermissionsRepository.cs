@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Identity.Repositories.Implementations
 {
-    public class PermissionsRepository : Repository<Permission>, IPermissionsRepository
+    public class PermissionsRepository : Repository<Permission, IdentityContext>, IPermissionsRepository
     {
-        public PermissionsRepository(DbContext context) : base(context)
+        public PermissionsRepository(IdentityContext context) : base(context)
         {
         }
     }

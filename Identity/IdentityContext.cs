@@ -1,5 +1,6 @@
 ﻿using Identity.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace Identity
 {
@@ -14,6 +15,11 @@ namespace Identity
         : base(options)
         {
             Database.Migrate();
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            
         }
     }
 }

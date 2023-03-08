@@ -1,0 +1,31 @@
+# tye application configuration file
+# read all about it at https://github.com/dotnet/tye
+#
+# when you've given us a try, we'd love to know what you think:
+#    https://aka.ms/AA7q20u
+#
+name: huberttroc
+
+services:
+
+  - name: ApiGateway
+    project: ApiGateway\ApiGateway.csproj
+    bindings:
+      - port: 80
+        protocol: http
+        name: apigw-http
+      - port: 443
+        protocol: https
+        name: apigw-https
+    replicas: 1
+
+  - name: Identity
+    project: Identity\Identity.csproj
+    bindings:
+      - port: 81
+        protocol: http
+        name: identity-http
+      - port: 444
+        protocol: https
+        name: identity-https
+    replicas: 1

@@ -23,6 +23,8 @@ builder.Services.AddSwaggerGen();
 var systemConfig = new SystemConfiguration();
 ConfigurationBinder.Bind(builder.Configuration, systemConfig);
 
+
+
 builder.Services.AddDbContext<IdentityContext>(
         options => options.UseSqlServer(systemConfig.ConnectionString));
 
@@ -55,10 +57,10 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
-
+    var context = services.GetRequiredService<IdentityContext>();
     try
     {
-        var context = services.GetRequiredService<IdentityContext>();
+        context.Database.EnsureCreated();
         context.Database.Migrate(); // apply all migrations
     }
     catch (Exception ex)

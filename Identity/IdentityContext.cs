@@ -16,10 +16,5 @@ namespace Identity
         {
             Database.Migrate();
         }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            
-        }
     }
 }

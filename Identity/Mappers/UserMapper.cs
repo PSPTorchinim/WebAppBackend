@@ -12,7 +12,7 @@ namespace Handlers.Mappers
     public class UserMapper : Profile
     {
         public UserMapper() {
-            CreateMap<User, GetUsersDTO>();
+            
         }
     }
 }

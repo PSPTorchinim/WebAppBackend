@@ -23,6 +23,8 @@ namespace Identity
 
         public async Task InitializeAsync()
         {
+            Thread.Sleep(15000);
+            System.Console.WriteLine("Waited with init");
             if (await countryRepository.Empty()) await SeedCountries();
             if (await permissionsRepository.Empty()) await SeedPermissions();
             if (await rolesRepository.Empty()) await SeedRoles();

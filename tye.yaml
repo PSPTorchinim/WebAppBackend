@@ -28,4 +28,4 @@ services:
       - port: 444
         protocol: https
         name: identity-https
-    replicas: 1
+    replicas: 2

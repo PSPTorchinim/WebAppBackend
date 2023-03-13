@@ -15,12 +15,10 @@ namespace Identity.Services.Implementations
         private readonly IUsersRepository _usersRepository;
         private readonly ICountryRepository _countryRepository;
         private readonly IAuthService _authService;
-        private readonly ILogger _logger;
 
-        public UsersService(IUsersRepository usersRepository, IMapper mapper, ILogger logger, IAuthService authService, ICountryRepository countryRepository) { 
+        public UsersService(IUsersRepository usersRepository, IMapper mapper, IAuthService authService, ICountryRepository countryRepository) { 
             _usersRepository = usersRepository;
             _mapper = mapper;
-            _logger = logger;
             _authService = authService;
             _countryRepository = countryRepository;
         }

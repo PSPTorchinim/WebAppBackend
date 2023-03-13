@@ -1,9 +1,8 @@
 ﻿using Handlers.Exceptions;
 using Identity.DTO.User;
 using Identity.Entities;
-using Identity.Repositories.Implementations;
+using Identity.Repositories.Interfaces;
 using Identity.Services.Interfaces;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -15,9 +14,9 @@ namespace TherapyAPI.Services
     public class AuthService : IAuthService
     {
         private readonly IConfiguration _configuration;
-        private readonly UsersRepository _usersRepository;
+        private readonly IUsersRepository _usersRepository;
 
-        public AuthService(IConfiguration configuration, UsersRepository usersRepository, ILogger<AuthService> logger)
+        public AuthService(IConfiguration configuration, IUsersRepository usersRepository, ILogger<AuthService> logger)
         {
             _configuration = configuration;
             _usersRepository = usersRepository;
